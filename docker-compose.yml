@@ -2,7 +2,7 @@ name: smtp-relay-docker
 
 services:
   smtp-relay:
-    image: boky/postfix:5.1.0@sha256:aafc772384232497bed875e1eb66b4d3e54ba1ebc86e2e185a6dc1dbc48182ef
+    image: boky/postfix:v4.4.0
     container_name: smtp-relay
     volumes:
       - smtp_queue:/var/spool/postfix
@@ -22,12 +22,17 @@ services:
       timeout: 10s
       retries: 3
 
-volumes:
-  smtp_queue:
-
 networks:
   relay_internal:
     internal: true
   relay_shared:
-    external: true
-    name: network_backend_net
+    name: smtp_relay_net
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${SMTP_RELAY_SUBNET}
+          gateway: ${SMTP_RELAY_GATEWAY}
+
+volumes:
+  smtp_queue:
