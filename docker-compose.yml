@@ -2,7 +2,7 @@ name: smtp-relay-docker
 
 services:
   smtp-relay:
-    image: boky/postfix:v4.4.0
+    image: boky/postfix:v4.4.0@sha256:f3f247fd42528b969e2603ac120d5a5b5db7dfe61f4505c49d438b9ba1822999
     container_name: smtp-relay
     volumes:
       - smtp_queue:/var/spool/postfix
