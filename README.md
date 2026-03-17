@@ -19,6 +19,11 @@ Reusable SMTP relay stack for internal services.
   - `SMTP_RELAY_SUBNET` (default `172.30.40.0/27`)
   - `SMTP_RELAY_GATEWAY` (default `172.30.40.1`)
 
+## Timezone
+
+- Container timezone is configured via `TZ`.
+- Default in `.env.example`: `Europe/Berlin`.
+
 ## Quick start
 
 ```bash

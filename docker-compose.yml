@@ -7,6 +7,7 @@ services:
     volumes:
       - smtp_queue:/var/spool/postfix
     environment:
+      TZ: ${TZ}
       RELAYHOST: ${RELAYHOST}
       RELAYHOST_USERNAME: ${RELAYHOST_USERNAME}
       RELAYHOST_PASSWORD: ${RELAYHOST_PASSWORD}
