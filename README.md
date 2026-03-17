@@ -13,8 +13,11 @@ Reusable SMTP relay stack for internal services.
 - No host ports are published.
 - Relay service is attached to:
   - internal network `relay_internal`
-  - shared external network `network_backend_net`
-- Other stacks can send mail to host `smtp-relay` on port `25` over `network_backend_net`.
+  - shared network `smtp_relay_net` (small dedicated subnet)
+- Other stacks can send mail to host `smtp-relay` on port `25` over `smtp_relay_net`.
+- Default network size is configurable via:
+  - `SMTP_RELAY_SUBNET` (default `172.30.40.0/27`)
+  - `SMTP_RELAY_GATEWAY` (default `172.30.40.1`)
 
 ## Quick start
 
@@ -29,4 +32,4 @@ docker compose up -d
 
 - Never commit `.env`.
 - Keep relay credentials only in local `.env` or secrets management.
-- Restrict which containers can reach `network_backend_net`.
+- Restrict which containers can reach `smtp_relay_net`.

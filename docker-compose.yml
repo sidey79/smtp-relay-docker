@@ -22,12 +22,17 @@ services:
       timeout: 10s
       retries: 3
 
-volumes:
-  smtp_queue:
-
 networks:
   relay_internal:
     internal: true
   relay_shared:
-    external: true
-    name: network_backend_net
+    name: smtp_relay_net
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${SMTP_RELAY_SUBNET}
+          gateway: ${SMTP_RELAY_GATEWAY}
+
+volumes:
+  smtp_queue:
