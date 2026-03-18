@@ -24,6 +24,19 @@ Reusable SMTP relay stack for internal services.
 - Container timezone is configured via `TZ`.
 - Default in `.env.example`: `Europe/Berlin`.
 
+## TLS certificate
+
+- SMTP server certificate and key are bind-mounted read-only from:
+  - `${SMTP_TLS_CERT_HOST_PATH}`
+  - `${SMTP_TLS_KEY_HOST_PATH}`
+- Recommended host file permissions:
+  - certificate: `root:root`, `0644`
+  - private key: `root:root`, `0600`
+- Postfix uses:
+  - `POSTFIX_smtpd_tls_cert_file=/etc/postfix/tls/smtp-relay.crt`
+  - `POSTFIX_smtpd_tls_key_file=/etc/postfix/tls/smtp-relay.key`
+  - `POSTFIX_smtpd_tls_security_level=may`
+
 ## Quick start
 
 ```bash
