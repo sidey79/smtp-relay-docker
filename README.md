@@ -27,8 +27,8 @@ Reusable SMTP relay stack for internal services.
 ## TLS certificate
 
 - SMTP server certificate and key are bind-mounted read-only from:
-  - `/opt/docker/rootca/public/smtp-relay.crt`
-  - `/opt/docker/rootca/private/smtp-relay.key`
+  - `${SMTP_TLS_CERT_HOST_PATH}`
+  - `${SMTP_TLS_KEY_HOST_PATH}`
 - Recommended host file permissions:
   - certificate: `root:root`, `0644`
   - private key: `root:root`, `0600`

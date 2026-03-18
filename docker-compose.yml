@@ -6,8 +6,8 @@ services:
     container_name: smtp-relay
     volumes:
       - smtp_queue:/var/spool/postfix
-      - /opt/docker/rootca/public/smtp-relay.crt:/etc/postfix/tls/smtp-relay.crt:ro
-      - /opt/docker/rootca/private/smtp-relay.key:/etc/postfix/tls/smtp-relay.key:ro
+      - ${SMTP_TLS_CERT_HOST_PATH}:/etc/postfix/tls/smtp-relay.crt:ro
+      - ${SMTP_TLS_KEY_HOST_PATH}:/etc/postfix/tls/smtp-relay.key:ro
     environment:
       TZ: ${TZ}
       RELAYHOST: ${RELAYHOST}
